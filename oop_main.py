@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 class AutoCatalog:
 
-    def __init__(self, file_name = r'C:\Users\chete\Desktop\ооп\auto.txt'):
+    def __init__(self, file_name = r'C:\Users\Вадим\Desktop\Новая папка\solovyev_oop\auto.txt'):
         self.file_name = file_name
 
     def _read_catalog(self):
