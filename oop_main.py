@@ -175,24 +175,19 @@ class AutoCatalog:
         return new_row
 
     def _get_user_input_for_param(self, element):
-        if element[-1] == '?':
-            while True:
-                print(f'{element} (Да или Нет):')
-                # param = input() + '\n'
-                param = input()
-                # if param == 'Да\n' or param == 'Нет\n':
-                if param == 'Да' or param == 'Нет':
+        while True:
+            prompt = f'{element} ({"Да" if element[-1] == "?" else "Введите значение"}): '
+            param = input(prompt).strip()
+            if element.endswith('?'):
+                if param.lower() in ['да', 'нет']:
+                    return param.capitalize()
+                else:
+                    print('Неподходящее значение! Введите "Да" или "Нет".')
+            else:
+                if param:
                     return param
                 else:
-                    print('Неподходящее значение!')
-        else:
-            while True:
-                print(f'{element}:')
-                param = input()
-                if len(param) > 0:
-                    return param
-                else:
-                    print('Неподходящее значение!')
+                    print('Неподходящее значение! Введите корректное значение.')
 
     def _search_by_firm(self, lines, firm):
         catalog = [row for row in lines if row[1] == firm or row[1] == 'Фирма']
