@@ -224,16 +224,10 @@ class AutoCatalog:
                 return line
 
     def _update_line_numbers(self, lines):
-        res = []
-        res.append(self._get_header_row(lines))
-        for line in range(1, len(lines)):
-            lines[line][0] = str(line)
-            new_line = lines[line]
-            res.append(new_line)
-            # row = lines[line]
-            # num = line - 1
-            # new_line = ','.join(map(str, [num] + row[1:])) + '\n'
-            # lines[line] = new_line
+        res = [self._get_header_row(lines)]
+        for idx, line in enumerate(lines[1:], start=1):
+            line[0] = str(idx)
+            res.append(line)
 
         self._write_catalog(res)
 
